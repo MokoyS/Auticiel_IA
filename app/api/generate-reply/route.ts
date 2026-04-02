@@ -3,6 +3,16 @@ import Anthropic from '@anthropic-ai/sdk'
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: CORS_HEADERS })
+}
+
 export async function POST(req: NextRequest) {
   try {
     let subject = ''
@@ -41,8 +51,8 @@ export async function POST(req: NextRequest) {
     })
 
     const reply = response.content[0].type === 'text' ? response.content[0].text : ''
-    return NextResponse.json({ reply })
+    return NextResponse.json({ reply }, { headers: CORS_HEADERS })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json({ error: error.message }, { status: 500, headers: CORS_HEADERS })
   }
 }
