@@ -1,0 +1,12 @@
+{
+  "name": "Auticiel IA",
+  "author": { "name": "Auticiel" },
+  "version": "1.0.0",
+  "frameworkVersion": "2.0",
+  "location": {
+    "support": {
+      "ticket_sidebar": { "url": "index.html" }
+    }
+  },
+  "domainWhitelist": ["auticiel-ia.vercel.app"]
+}

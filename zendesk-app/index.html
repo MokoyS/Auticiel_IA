@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auticiel IA</title>
+  <script src="https://static.zdassets.com/zendesk_app_framework_sdk/2.0/zaf_sdk.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #fff;
+      color: #2f3941;
+      padding: 16px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #1f3141;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    #btn-generate {
+      background: #1f73b7;
+      color: #fff;
+    }
+
+    #btn-generate:hover:not(:disabled) {
+      background: #1a5f9a;
+    }
+
+    #btn-generate:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    #btn-use {
+      background: #f3f4f6;
+      color: #2f3941;
+      border: 1px solid #d8dcde;
+      margin-top: 10px;
+      display: none;
+    }
+
+    #btn-use:hover {
+      background: #e9ebed;
+    }
+
+    #loading {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      color: #68737d;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid #d8dcde;
+      border-top-color: #1f73b7;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #reply-box {
+      display: none;
+      margin-top: 14px;
+      background: #f8f9f9;
+      border: 1px solid #d8dcde;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #2f3941;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    #confirmation {
+      display: none;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #287d3c;
+      font-weight: 500;
+    }
+
+    #error-msg {
+      display: none;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #cc3340;
+    }
+  </style>
+</head>
+<body>
+  <h1>Auticiel IA</h1>
+
+  <button id="btn-generate">✨ Générer une réponse</button>
+
+  <div id="loading">
+    <span class="spinner"></span>
+    Génération en cours…
+  </div>
+
+  <div id="error-msg"></div>
+  <div id="reply-box"></div>
+  <button id="btn-use">Utiliser cette réponse</button>
+  <div id="confirmation">✅ Réponse insérée !</div>
+
+  <script>
+    const client = ZAFClient.init()
+
+    const btnGenerate = document.getElementById('btn-generate')
+    const btnUse = document.getElementById('btn-use')
+    const loading = document.getElementById('loading')
+    const replyBox = document.getElementById('reply-box')
+    const confirmation = document.getElementById('confirmation')
+    const errorMsg = document.getElementById('error-msg')
+
+    let generatedReply = ''
+
+    btnGenerate.addEventListener('click', async () => {
+      btnGenerate.disabled = true
+      loading.style.display = 'flex'
+      replyBox.style.display = 'none'
+      btnUse.style.display = 'none'
+      confirmation.style.display = 'none'
+      errorMsg.style.display = 'none'
+      generatedReply = ''
+
+      try {
+        const data = await client.get(['ticket.subject', 'ticket.description'])
+        const subject = data['ticket.subject'] || ''
+        const description = data['ticket.description'] || ''
+
+        const res = await fetch('https://auticiel-ia.vercel.app/api/generate-reply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ subject, description }),
+        })
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}))
+          throw new Error(err.error || `Erreur ${res.status}`)
+        }
+
+        const json = await res.json()
+        generatedReply = json.reply || ''
+
+        replyBox.textContent = generatedReply
+        replyBox.style.display = 'block'
+        btnUse.style.display = 'block'
+      } catch (err) {
+        errorMsg.textContent = '❌ ' + (err.message || 'Erreur inconnue')
+        errorMsg.style.display = 'block'
+      } finally {
+        loading.style.display = 'none'
+        btnGenerate.disabled = false
+      }
+    })
+
+    btnUse.addEventListener('click', async () => {
+      if (!generatedReply) return
+      await client.set('ticket.comment.text', generatedReply)
+      confirmation.style.display = 'block'
+      btnUse.style.display = 'none'
+    })
+  </script>
+</body>
+</html>
