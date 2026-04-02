@@ -36,7 +36,7 @@ export async function askClaude(
     model: 'claude-sonnet-4-20250514',
     max_tokens: 1024,
     system: systemPrompt,
-    messages,
+    messages: messages.map((m) => ({ role: m.role, content: m.content })),
   })
 
   const block = response.content[0]

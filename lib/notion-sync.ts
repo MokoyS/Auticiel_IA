@@ -54,8 +54,7 @@ async function fetchPageContent(pageId: string): Promise<string> {
 }
 
 async function fetchDatabaseContent(databaseId: string): Promise<string> {
-  // @notionhq/client v5: databases.query → dataSources.query with data_source_id
-  const response = await notion.dataSources.query({ data_source_id: databaseId, page_size: 100 })
+  const response = await notion.databases.query({ database_id: databaseId, page_size: 100 })
   let content = ''
   for (const page of response.results) {
     const props = (page as Record<string, unknown> & { properties: Record<string, unknown> }).properties

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, FormEvent } from 'react'
+import Image from 'next/image'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -127,10 +128,9 @@ export default function ChatPage() {
       <header className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
         <div className="flex items-center gap-3">
           <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold"
-            style={{ backgroundColor: '#0066CC' }}
+            className="w-8 h-8 rounded-lg overflow-hidden"
           >
-            A
+            <Image src="/auticiel_logo.jpeg" alt="Auticiel" width={32} height={32} />
           </div>
           <h1 className="text-lg font-semibold text-gray-900">Assistant Auticiel</h1>
         </div>
