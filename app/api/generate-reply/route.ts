@@ -11,9 +11,14 @@ export async function POST(req: NextRequest) {
     const contentType = req.headers.get('content-type') || ''
 
     if (contentType.includes('application/json')) {
-      const text = await req.text()
-      const clean = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
-      const body = JSON.parse(clean)
+      const rawText = await req.text()
+      console.error('RAW BODY:', rawText)
+      const cleanText = rawText
+        .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r')
+        .replace(/\t/g, '\\t')
+      const body = JSON.parse(cleanText)
       subject = body.subject || ''
       description = body.description || ''
     } else {
