@@ -5,9 +5,25 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
 export async function POST(req: NextRequest) {
   try {
-    const { subject, description } = await req.json()
-    const cleanSubject = (subject || '').replace(/[\r\n\t\x00-\x1F\x7F]/g, ' ').trim()
-    const cleanDescription = (description || '').replace(/[\r\n\t\x00-\x1F\x7F]/g, ' ').trim()
+    let subject = ''
+    let description = ''
+
+    const contentType = req.headers.get('content-type') || ''
+
+    if (contentType.includes('application/json')) {
+      const text = await req.text()
+      const clean = text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+      const body = JSON.parse(clean)
+      subject = body.subject || ''
+      description = body.description || ''
+    } else {
+      const formData = await req.formData()
+      subject = formData.get('subject')?.toString() || ''
+      description = formData.get('description')?.toString() || ''
+    }
+
+    const cleanSubject = subject.replace(/[\r\n\t]/g, ' ').trim()
+    const cleanDescription = description.replace(/[\r\n\t]/g, ' ').trim()
 
     const response = await client.messages.create({
       model: 'claude-sonnet-4-20250514',
