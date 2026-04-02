@@ -6,6 +6,8 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 export async function POST(req: NextRequest) {
   try {
     const { subject, description } = await req.json()
+    const cleanSubject = (subject || '').replace(/[\r\n\t\x00-\x1F\x7F]/g, ' ').trim()
+    const cleanDescription = (description || '').replace(/[\r\n\t\x00-\x1F\x7F]/g, ' ').trim()
 
     const response = await client.messages.create({
       model: 'claude-sonnet-4-20250514',
@@ -13,7 +15,7 @@ export async function POST(req: NextRequest) {
       system: 'Tu es l assistant support d Auticiel. Redige une reponse email professionnelle en francais, sans emoji. Signature : Nous vous souhaitons une bonne journee, L equipe Auticiel.',
       messages: [{
         role: 'user',
-        content: `Redige une reponse pour ce ticket. Sujet: ${subject}. Message: ${description}`
+        content: `Redige une reponse pour ce ticket. Sujet: ${cleanSubject}. Message: ${cleanDescription}`
       }]
     })
 
