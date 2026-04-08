@@ -1,11 +1,12 @@
 {
   "name": "Auticiel IA",
-  "author": { "name": "Auticiel" },
+  "author": { "name": "Auticiel", "email": "maxime.lebas@auticiel.fr" },
   "version": "1.0.0",
   "frameworkVersion": "2.0",
+  "defaultLocale": "fr",
   "location": {
     "support": {
-      "ticket_sidebar": { "url": "index.html" }
+      "ticket_sidebar": { "url": "assets/index.html" }
     }
   },
   "domainWhitelist": ["auticiel-ia.vercel.app"]
