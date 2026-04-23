@@ -7,8 +7,8 @@
     "client_type": "B2C",
     "frequency": "Très fréquent",
     "action_required": true,
-    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Pour constituer votre dossier MDPH, nous pouvons vous établir un devis au nom du bénéficiaire avec la mention du compte financeur MDPH de votre département.\n\nPour cela, nous avons besoin des informations suivantes :\n- Nom et prénom du bénéficiaire\n- Adresse postale de livraison\n- Numéro de département de la MDPH\n- Le pack souhaité (Mobilité 8.7\" ou Confort grand écran)\n\nDès réception de ces éléments, nous vous adressons le devis sous 48h.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
-    "notes": "Toujours demander le département MDPH — chaque MDPH a ses propres exigences. Ne jamais promettre de délai de financement MDPH (ça dépend de la MDPH, pas d'Auticiel). Si le client mentionne déjà une prise en charge accordée, escalader vers Maxime pour créer le devis dans Odoo. Ne jamais rediriger vers le formulaire si le client a déjà rempli le formulaire en ligne."
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Pour établir votre devis MDPH, il vous suffit de remplir notre formulaire en ligne :\n\nhttps://shop.auticiel.com/devis-mdph\n\nVous y renseignerez directement les informations nécessaires et recevrez votre devis rapidement.\n\nN'hésitez pas à nous contacter si vous avez des questions.",
+    "notes": "IMPORTANT : Ne jamais demander les infos par email. Toujours rediriger vers le formulaire : https://shop.auticiel.com/devis-mdph — le client le remplit lui-même et le devis est créé automatiquement dans Odoo. Ne jamais promettre de délai de financement MDPH (ça dépend de la MDPH, pas d'Auticiel)."
   },
   {
     "id": "facture-acquittee",

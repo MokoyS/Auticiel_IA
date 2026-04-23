@@ -14,7 +14,7 @@
     "Promettre un délai de financement MDPH (dépend de la MDPH, pas d'Auticiel).",
     "Confirmer la réception d'un paiement sans vérification réelle dans Odoo.",
     "Renouveler une licence manuellement par email.",
-    "Rédiger un devis manuellement par email — toujours rediriger vers le formulaire : https://auticiel.com/devis-mdph/",
+    "Rédiger un devis manuellement par email — toujours rediriger vers le formulaire : https://shop.auticiel.com/devis-mdph",
     "Résoudre techniquement un SAV complexe sans escalader à l'équipe support.",
     "Utiliser des emojis.",
     "Utiliser du markdown (gras, astérisques, titres ##) dans le corps de l'email.",
@@ -31,7 +31,7 @@
   ],
   "resources": [
     { "label": "FAQ clients", "url": "https://help.auticiel.com/hc/fr" },
-    { "label": "Formulaire devis MDPH", "url": "https://auticiel.com/devis-mdph/" },
+    { "label": "Formulaire devis MDPH", "url": "https://shop.auticiel.com/devis-mdph" },
     { "label": "Cloud Auticiel", "url": "https://cloud.auticiel.com/" },
     { "label": "Site AMIKEO", "url": "https://auticiel.com/amikeo" }
   ]

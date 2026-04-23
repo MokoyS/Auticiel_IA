@@ -13,7 +13,7 @@
       "Envoyer le devis depuis Odoo avec le template 'Vente : Devis MDPH'",
       "Retour sur Zendesk → marquer le ticket comme Résolu (sans réponse)"
     ],
-    "notes": "Ne jamais rédiger un devis manuellement par email. Toujours rediriger vers le formulaire : https://auticiel.com/devis-mdph/. La piste est créée automatiquement dans Odoo depuis le formulaire en ligne."
+    "notes": "Ne jamais rédiger un devis manuellement par email. Toujours rediriger vers le formulaire : https://shop.auticiel.com/devis-mdph. La piste est créée automatiquement dans Odoo depuis le formulaire en ligne."
   },
   {
     "id": "validation-paiement",
