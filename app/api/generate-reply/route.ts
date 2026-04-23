@@ -50,12 +50,9 @@ ${ed?.tone ?? 'Professionnel, bienveillant, direct. Empathique avec les familles
 ═══════════════════════════════════════
 STRUCTURE OBLIGATOIRE
 ═══════════════════════════════════════
-${ed?.structure.map((s, i) => `${i + 1}. ${s}`).join('\n') ?? ''}
+${ed?.structure.filter(s => !s.toLowerCase().includes('signature')).map((s, i) => `${i + 1}. ${s}`).join('\n') ?? ''}
 
-═══════════════════════════════════════
-SIGNATURE À UTILISER
-═══════════════════════════════════════
-${ed?.signature ?? 'Nous vous souhaitons une bonne journée,\nL\'équipe Auticiel.'}
+NE PAS inclure de signature — elle est ajoutée automatiquement par Zendesk à l'envoi.
 
 ═══════════════════════════════════════
 RÈGLES ABSOLUES — NE JAMAIS FAIRE
@@ -128,6 +125,7 @@ ${ed.faq_tech}
 export async function POST(req: NextRequest) {
   try {
     let description = ''
+    let customPrompt = ''
 
     const contentType = req.headers.get('content-type') || ''
 
@@ -140,9 +138,11 @@ export async function POST(req: NextRequest) {
         .replace(/\t/g, '\\t')
       const body = JSON.parse(cleanText)
       description = body.description || body.subject || ''
+      customPrompt = body.customPrompt || ''
     } else {
       const formData = await req.formData()
       description = formData.get('description')?.toString() || formData.get('subject')?.toString() || ''
+      customPrompt = formData.get('customPrompt')?.toString() || ''
     }
 
     const cleanDescription = description.replace(/[\r\n\t]/g, ' ').trim()
@@ -163,7 +163,7 @@ export async function POST(req: NextRequest) {
       system: systemPrompt,
       messages: [{
         role: 'user',
-        content: `Voici le message du client (ticket Zendesk) :\n\n${cleanDescription}`,
+        content: `Voici le message du client (ticket Zendesk) :\n\n${cleanDescription}${customPrompt ? `\n\n---\nContexte supplémentaire fourni par l'agent :\n${customPrompt}` : ''}`,
       }],
     })
 

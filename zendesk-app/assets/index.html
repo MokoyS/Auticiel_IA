@@ -4,16 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Auticiel IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://static.zdassets.com/zendesk_app_framework_sdk/2.0/zaf_sdk.min.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
       background: #fff;
       color: #2f3941;
       font-size: 13px;
@@ -32,29 +31,42 @@
     .logo {
       width: 28px;
       height: 28px;
-      background: #0066cc;
       border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 13px;
+      overflow: hidden;
       flex-shrink: 0;
     }
 
-    .header-text h1 {
-      font-size: 13px;
+    .logo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .header-text h1 { font-size: 13px; font-weight: 600; color: #1f3141; line-height: 1.2; }
+    .header-text p  { font-size: 11px; color: #68737d; line-height: 1.3; }
+
+    .context-label {
+      font-size: 11px;
       font-weight: 600;
-      color: #1f3141;
-      line-height: 1.2;
+      color: #68737d;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 5px;
     }
 
-    .header-text p {
-      font-size: 11px;
-      color: #68737d;
-      line-height: 1.3;
+    #custom-prompt {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #e9ebed;
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: inherit;
+      color: #2f3941;
+      resize: vertical;
+      min-height: 60px;
+      margin-bottom: 10px;
+      outline: none;
+      line-height: 1.5;
     }
+
+    #custom-prompt:focus { border-color: #1f73b7; }
+    #custom-prompt::placeholder { color: #b8c0c7; }
 
     .btn-primary {
       display: flex;
@@ -117,10 +129,7 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    #reply-section {
-      display: none;
-      margin-top: 14px;
-    }
+    #reply-section { display: none; margin-top: 14px; }
 
     .reply-label {
       font-size: 11px;
@@ -141,7 +150,7 @@
       color: #2f3941;
       white-space: pre-wrap;
       word-break: break-word;
-      max-height: 280px;
+      max-height: 260px;
       overflow-y: auto;
     }
 
@@ -173,15 +182,23 @@
 <body>
 
   <div class="header">
-    <div class="logo">A</div>
+    <div class="logo">
+      <img src="logo.png" alt="Auticiel" />
+    </div>
     <div class="header-text">
       <h1>Auticiel IA</h1>
       <p>Génération de réponse</p>
     </div>
   </div>
 
+  <div class="context-label">Contexte supplémentaire (optionnel)</div>
+  <textarea
+    id="custom-prompt"
+    placeholder="Ex : client très frustré, commande passée il y a 3 semaines, paiement reçu confirmé par Cheikh…"
+  ></textarea>
+
   <button class="btn-primary" id="btn-generate">
-    ✨ Générer une réponse
+    Générer une réponse
   </button>
 
   <div id="loading">
@@ -194,22 +211,23 @@
   <div id="reply-section">
     <div class="reply-label">Réponse suggérée</div>
     <div id="reply-text"></div>
-    <button class="btn-secondary" id="btn-use">📋 Utiliser cette réponse</button>
+    <button class="btn-secondary" id="btn-use">Insérer dans le mail</button>
   </div>
 
-  <div id="confirmation">✅ Réponse insérée dans l'éditeur !</div>
+  <div id="confirmation">Réponse insérée dans l'éditeur</div>
 
   <script>
     const client = ZAFClient.init()
-    client.invoke('resize', { width: '100%', height: '500px' })
+    client.invoke('resize', { width: '100%', height: '420px' })
 
-    const btnGenerate = document.getElementById('btn-generate')
-    const btnUse = document.getElementById('btn-use')
-    const loading = document.getElementById('loading')
+    const btnGenerate  = document.getElementById('btn-generate')
+    const btnUse       = document.getElementById('btn-use')
+    const loading      = document.getElementById('loading')
     const replySection = document.getElementById('reply-section')
-    const replyText = document.getElementById('reply-text')
+    const replyText    = document.getElementById('reply-text')
     const confirmation = document.getElementById('confirmation')
-    const errorMsg = document.getElementById('error-msg')
+    const errorMsg     = document.getElementById('error-msg')
+    const customPrompt = document.getElementById('custom-prompt')
 
     let generatedReply = ''
 
@@ -223,13 +241,14 @@
 
       try {
         const data = await client.get(['ticket.subject', 'ticket.description'])
-        const subject = data['ticket.subject'] || ''
+        const subject     = data['ticket.subject'] || ''
         const description = data['ticket.description'] || ''
+        const context     = customPrompt.value.trim()
 
         const res = await fetch('https://auticiel-ia.vercel.app/api/generate-reply', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ subject, description }),
+          body: JSON.stringify({ subject, description, customPrompt: context }),
         })
 
         if (!res.ok) {
@@ -245,7 +264,7 @@
         client.invoke('resize', { width: '100%', height: '650px' })
 
       } catch (err) {
-        errorMsg.textContent = '❌ ' + (err.message || 'Erreur inconnue')
+        errorMsg.textContent = err.message || 'Erreur inconnue'
         errorMsg.style.display = 'block'
       } finally {
         loading.style.display = 'none'
@@ -256,17 +275,23 @@
     btnUse.addEventListener('click', async () => {
       if (!generatedReply) return
 
-      // Assurer des double sauts de ligne entre chaque paragraphe
-      const formatted = generatedReply
-        .split(/\n{2,}/)
-        .map(p => p.trim())
-        .filter(Boolean)
-        .join('\n\n')
-
-      await client.set('ticket.comment.text', formatted)
-
-      replySection.style.display = 'none'
-      confirmation.style.display = 'block'
+      try {
+        await client.invoke('ticket.comment.appendText', generatedReply)
+        replySection.style.display = 'none'
+        confirmation.style.display = 'block'
+        client.invoke('resize', { width: '100%', height: '420px' })
+      } catch (e) {
+        // fallback : set direct
+        try {
+          await client.set('ticket.comment.value', generatedReply)
+          replySection.style.display = 'none'
+          confirmation.style.display = 'block'
+          client.invoke('resize', { width: '100%', height: '420px' })
+        } catch (e2) {
+          errorMsg.textContent = 'Impossible d\'insérer le texte. Copiez-le manuellement.'
+          errorMsg.style.display = 'block'
+        }
+      }
     })
   </script>
 
