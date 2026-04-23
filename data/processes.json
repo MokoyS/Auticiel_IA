@@ -1,0 +1,89 @@
+[
+  {
+    "id": "devis-mdph",
+    "title": "Traitement d'un devis MDPH",
+    "trigger": "Email Zendesk 'Vous avez été assigné à Demande de devis MDPH'",
+    "steps": [
+      "Ouvrir le ticket Zendesk",
+      "Cliquer 'Voir la piste' → s'ouvre dans Odoo",
+      "Lire les infos dans l'onglet Notes de la piste (nom, adresse, pack souhaité, durée abonnement, département MDPH)",
+      "Cliquer 'Nouveau devis'",
+      "Sélectionner le modèle selon le pack demandé",
+      "Adapter le devis selon la demande (vérifier liste de prix = B2C EUR)",
+      "Envoyer le devis depuis Odoo avec le template 'Vente : Devis MDPH'",
+      "Retour sur Zendesk → marquer le ticket comme Résolu (sans réponse)"
+    ],
+    "notes": "Ne jamais rédiger un devis manuellement par email. Toujours rediriger vers le formulaire : https://auticiel.com/devis-mdph/. La piste est créée automatiquement dans Odoo depuis le formulaire en ligne."
+  },
+  {
+    "id": "validation-paiement",
+    "title": "Validation d'un paiement reçu",
+    "trigger": "Message de Cheikh dans le canal Slack 'virement recu en banque'",
+    "steps": [
+      "Lire le message Slack de Cheikh dans le canal 'virement recu en banque'",
+      "Identifier le client correspondant dans Odoo",
+      "Ouvrir le devis du client dans Odoo",
+      "Passer le statut de 'Devis envoyé' à 'Confirmé'",
+      "La commande apparaît dans Inventaire → Bons de livraison"
+    ],
+    "notes": "Modes de paiement acceptés : virement ou chèque uniquement (pas de CB). La commande n'est traitée qu'après réception effective du règlement."
+  },
+  {
+    "id": "traitement-commande",
+    "title": "Traitement d'une commande (post-paiement)",
+    "trigger": "Commande confirmée visible dans Odoo → Inventaire → Bons de livraison",
+    "steps": [
+      "Repérer la commande dans Odoo → Inventaire → Bons de livraison (statut 'Prêt')",
+      "Générer l'étiquette de livraison (B2C → Colissimo, B2B → Chronopost)",
+      "Envoyer l'étiquette par email à David (responsable ESAT)",
+      "Envoyer les instructions à David par email",
+      "David prépare et configure physiquement la tablette",
+      "David imprime l'étiquette et expédie la tablette"
+    ],
+    "notes": "Délai annoncé aux clients : 5 à 10 jours ouvrés après réception du paiement. Commandes B2B : email à David avec 'Commande B2B [numéro] - [nom établissement]' + adresse + spécificités."
+  },
+  {
+    "id": "sav-garantie",
+    "title": "SAV — Tablette défectueuse sous garantie",
+    "trigger": "Client signale un problème matériel (panne, écran, batterie)",
+    "steps": [
+      "Vérifier que le défaut est constructeur (pas une casse ou mauvaise manipulation)",
+      "Envoyer le mail de retour garantie avec les instructions d'emballage",
+      "Le client envoie la tablette à : AUTICIEL, Bâtiment WeWork, 198 Av de France, 75012 Paris",
+      "Auticiel envoie la tablette à Samsung pour réparation",
+      "Si Samsung refuse : envoyer un devis de réparation au client",
+      "Si client refuse le devis : frais de gestion ~30 €"
+    ],
+    "notes": "Garanties : tablette 24 mois pièces et main d'œuvre, batterie 12 mois. Exclusions : casse, vol, perte, mauvaise manipulation. Délai réparation Samsung : minimum 1 mois. Contact SAV : customer-service@auticiel.com | +33 (0)9 72 39 44 44."
+  },
+  {
+    "id": "sav-technique",
+    "title": "SAV — Problèmes techniques (cloud, app, mode aidant)",
+    "trigger": "Client signale un bug applicatif ou un problème de connexion",
+    "steps": [
+      "Vérifier connexion Internet active",
+      "Effectuer les mises à jour Android",
+      "Effectuer les mises à jour AMIKEO via le Gestionnaire",
+      "Forcer la synchronisation application par application",
+      "Éteindre et rallumer la tablette",
+      "Réessayer sous Wi-Fi stable",
+      "Si insuffisant : organiser une prise en main à distance via TeamViewer (RDV Google Calendar obligatoire)",
+      "Si trop technique : escalader à François (dev)"
+    ],
+    "notes": "Si problème dû à mauvaise manipulation : intervention facturée. Ne jamais promettre de résoudre par email uniquement. TeamViewer QuickSupport est l'outil de prise en main à distance."
+  },
+  {
+    "id": "mdph-financement",
+    "title": "Process MDPH — Financement",
+    "trigger": "Client demande des infos sur le financement MDPH",
+    "steps": [
+      "Le client constitue son dossier MDPH avec le devis Auticiel",
+      "La MDPH instruit le dossier (délai variable selon département, de 4 à 18 mois)",
+      "En cas d'accord, la MDPH notifie le client",
+      "Le client transmet la notification d'accord à Auticiel",
+      "Auticiel prépare la commande selon les conditions de l'accord",
+      "Le client (ou la MDPH selon département) règle la part restante"
+    ],
+    "notes": "Ne jamais promettre de délai MDPH — ça dépend du département, pas d'Auticiel. Certains départements payent directement Auticiel, d'autres remboursent le client. Ne pas promettre de procédure universelle."
+  }
+]

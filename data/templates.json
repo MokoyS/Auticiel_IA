@@ -1,0 +1,167 @@
+[
+  {
+    "id": "mdph-devis",
+    "title": "Demande de devis MDPH",
+    "category": "MDPH / Financement",
+    "keywords": ["mdph", "devis", "financement", "pch", "dossier", "commission"],
+    "client_type": "B2C",
+    "frequency": "Très fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Pour constituer votre dossier MDPH, nous pouvons vous établir un devis au nom du bénéficiaire avec la mention du compte financeur MDPH de votre département.\n\nPour cela, nous avons besoin des informations suivantes :\n- Nom et prénom du bénéficiaire\n- Adresse postale de livraison\n- Numéro de département de la MDPH\n- Le pack souhaité (Mobilité 8.7\" ou Confort grand écran)\n\nDès réception de ces éléments, nous vous adressons le devis sous 48h.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Toujours demander le département MDPH — chaque MDPH a ses propres exigences. Ne jamais promettre de délai de financement MDPH (ça dépend de la MDPH, pas d'Auticiel). Si le client mentionne déjà une prise en charge accordée, escalader vers Maxime pour créer le devis dans Odoo. Ne jamais rediriger vers le formulaire si le client a déjà rempli le formulaire en ligne."
+  },
+  {
+    "id": "facture-acquittee",
+    "title": "Demande de facture acquittée",
+    "category": "Facture / Paiement",
+    "keywords": ["facture", "acquittée", "comptabilité", "justificatif"],
+    "client_type": "B2B",
+    "frequency": "Très fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous prenons bonne note de votre demande de facture acquittée pour [nom bénéficiaire / référence commande].\n\nNous transmettrons votre demande au service facturation qui vous adressera le document dans les meilleurs délais.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Ne pas promettre de délai précis. La facture acquittée est émise par le service facturation (accountsreceivable@auticiel.com), pas par Maxime. Transférer la demande si nécessaire. Souvent demandé par les comptables d'établissements médico-sociaux pour transmission à la MDPH."
+  },
+  {
+    "id": "livraison-domtom",
+    "title": "Livraison en DOM-TOM",
+    "category": "Suivi commande",
+    "keywords": ["réunion", "guadeloupe", "martinique", "guyane", "dom-tom", "outremer", "livraison"],
+    "client_type": "Les deux",
+    "frequency": "Occasionnel",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous livrons bien en [territoire concerné]. Un surcoût d'expédition de 25 € HT s'applique pour les livraisons dans les DOM-TOM, qui sera ajouté au devis.\n\nLes délais de livraison sont légèrement plus longs qu'en métropole. Souhaitez-vous qu'on vous établisse un devis incluant ce surcoût ?\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Surcoût DOM-TOM : 25 € HT (30 € TTC) pour Guadeloupe, Martinique, Réunion, Guyane. Toujours l'ajouter au devis. Pour l'Europe hors France, vérifier avec Maxime."
+  },
+  {
+    "id": "tablette-personnelle",
+    "title": "Utiliser AMIKEOAPPS sur tablette personnelle",
+    "category": "Info produit",
+    "keywords": ["tablette personnelle", "android", "google play", "licence", "sans tablette", "propre tablette"],
+    "client_type": "B2C",
+    "frequency": "Fréquent",
+    "action_required": false,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre question. AMIKEOAPPS est disponible sur Google Play Store et peut être installé sur une tablette Android personnelle compatible.\n\nCependant, nos packs AMIKEO incluent une tablette préconfigurée et optimisée pour AMIKEOAPPS, ce qui garantit la meilleure expérience pour le bénéficiaire. La mise en service (installation et configuration) est réalisée par notre équipe avant livraison.\n\nSi vous souhaitez partir sur une tablette personnelle, la licence logicielle seule (AMIKEOAPPS 2 ans) est disponible à 305 € HT.\n\nN'hésitez pas si vous avez d'autres questions.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Souvent posé par des familles en attente d'une décision MDPH qui veulent tester le logiciel d'abord. Mentionner la licence seule comme option intermédiaire. Prix : 305 € HT / 321,78 € TTC (TVA 5,5 %)."
+  },
+  {
+    "id": "virement-commande-non-validee",
+    "title": "Virement effectué mais commande non validée",
+    "category": "Facture / Paiement",
+    "keywords": ["virement", "paiement", "commande", "validée", "confirmation", "reçu", "envoyé"],
+    "client_type": "B2C",
+    "frequency": "Fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous prenons bonne note de votre virement effectué le [date si mentionnée] pour le devis [référence si mentionnée].\n\nNous vérifions la réception du paiement et revenons vers vous très rapidement pour confirmer la validation de votre commande.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "IMPORTANT : escalader immédiatement à Maxime pour vérification dans Odoo. Les clients qui ont viré de l'argent sans confirmation sont très anxieux — répondre dans la journée impérativement. Ne jamais confirmer la réception sans vérification réelle."
+  },
+  {
+    "id": "renouvellement-abonnement",
+    "title": "Renouvellement abonnement AMIKEOAPPS",
+    "category": "Renouvellement abonnement",
+    "keywords": ["renouvellement", "abonnement", "amikeoapps", "licence", "expiration", "fin"],
+    "client_type": "Les deux",
+    "frequency": "Très fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message concernant le renouvellement de l'abonnement AMIKEOAPPS pour [nom bénéficiaire].\n\nNous pouvons vous établir un devis de renouvellement. Pourriez-vous nous confirmer :\n- La durée souhaitée : 1 an ou 2 ans ?\n- L'adresse email associée au compte AMIKEOAPPS\n\nDès réception, nous vous adressons le devis de renouvellement.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Le renouvellement peut aussi se faire directement via l'application AMIKEOAPPS (achat in-app). Mentionner cette option si le client est B2C — c'est plus rapide. Pour les établissements B2B, toujours passer par un devis Odoo."
+  },
+  {
+    "id": "info-produit-general",
+    "title": "Demande d'information générale sur AMIKEO",
+    "category": "Info produit",
+    "keywords": ["amikeo", "solution", "présentation", "c'est quoi", "comment ça marche", "enfant", "autisme", "handicap", "non verbal"],
+    "client_type": "B2C",
+    "frequency": "Très fréquent",
+    "action_required": false,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. AMIKEO est une solution conçue spécifiquement pour les personnes présentant des troubles cognitifs, notamment l'autisme et les difficultés de communication.\n\nLa solution comprend :\n- Une tablette Samsung préconfigurée\n- Le logiciel AMIKEOAPPS (pictogrammes, communication alternative, activités adaptées)\n- Une mise en service réalisée par notre équipe\n- Un webinar de prise en main pour les aidants\n\nNous proposons deux formats :\n- Pack Mobilité (écran 8,7\") : 499 € HT\n- Pack Confort (grand écran) : 549 € HT\n\nLa solution est finançable par la MDPH. Souhaitez-vous qu'on vous établisse un devis ?\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Toujours proposer en fin de réponse de créer un devis — c'est l'objectif commercial. Adapter le ton : ces personnes sont souvent des parents épuisés cherchant de l'aide. Être chaleureux et rassurant. Mentionner le financement MDPH systématiquement."
+  },
+  {
+    "id": "mise-a-jour-devis",
+    "title": "Demande de mise à jour d'un devis existant",
+    "category": "Devis",
+    "keywords": ["mise à jour", "devis", "actualisation", "renouveler devis", "modifier devis"],
+    "client_type": "B2B",
+    "frequency": "Fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous prenons bonne note de votre demande de mise à jour du devis pour [nom bénéficiaire].\n\nNous procédons à l'actualisation et vous adressons le devis mis à jour dans les meilleurs délais.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Escalader à Maxime pour modification dans Odoo. Souvent demandé par des ergothérapeutes ou assistantes sociales qui gèrent le dossier MDPH et ont besoin d'un devis actualisé."
+  },
+  {
+    "id": "rdv-assistance-technique",
+    "title": "Prise de RDV assistance technique",
+    "category": "SAV / Assistance technique",
+    "keywords": ["rendez-vous", "rdv", "assistance", "technicien", "appel", "téléphone", "visio"],
+    "client_type": "Les deux",
+    "frequency": "Fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous prenons bonne note de votre demande de rendez-vous pour une assistance technique.\n\nNotre équipe support va vous recontacter dans les prochains jours pour convenir d'un créneau.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Transférer au support technique. Ne pas fixer de RDV directement — c'est géré par l'équipe support via Google Calendar."
+  },
+  {
+    "id": "mode-aidant-inaccessible",
+    "title": "Problème technique — impossible d'accéder au mode aidant",
+    "category": "SAV / Assistance technique",
+    "keywords": ["mode aidant", "code", "mot de passe", "accès", "bloqué", "verrouillé"],
+    "client_type": "Les deux",
+    "frequency": "Fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous sommes désolés pour cette difficulté d'accès au mode aidant.\n\nPourriez-vous nous préciser :\n- Le modèle de tablette utilisé\n- La version d'AMIKEOAPPS installée (visible dans les paramètres de l'app)\n- Le comportement exact observé (ex : le code est accepté mais l'interface se referme)\n\nNotre équipe support reviendra vers vous rapidement avec une solution.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Ne pas tenter de résoudre techniquement par email — escalader au support technique (support@auticiel.com). Collecter les infos de diagnostic d'abord. Problème fréquent signalé notamment par les IME avec plusieurs tablettes."
+  },
+  {
+    "id": "suivi-commande-relance",
+    "title": "Suivi de commande — pas de nouvelles après envoi du bon de commande",
+    "category": "Suivi commande",
+    "keywords": ["commande", "nouvelles", "livraison", "délai", "relance", "suivi", "où en est", "expédié"],
+    "client_type": "Les deux",
+    "frequency": "Très fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous sommes désolés pour ce manque de réactivité.\n\nNous prenons bonne note de votre relance concernant la commande [référence devis si mentionnée]. Nous revenons vers vous très rapidement pour vous confirmer le statut de votre commande et le délai de livraison estimé.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "C'est une des catégories les plus frustrantes pour les clients — certains relancent plusieurs fois sur plusieurs semaines. Toujours escalader immédiatement à Maxime pour vérification dans Odoo. Ton : empathique, pas défensif. Ne jamais promettre de délai précis sans vérification."
+  },
+  {
+    "id": "resiliation-abonnement",
+    "title": "Résiliation / arrêt abonnement",
+    "category": "Renouvellement abonnement",
+    "keywords": ["résiliation", "arrêt", "stop", "ne plus renouveler", "annulation", "fin abonnement"],
+    "client_type": "Les deux",
+    "frequency": "Occasionnel",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous prenons bonne note de votre souhait de ne pas renouveler l'abonnement AMIKEOAPPS pour [nom bénéficiaire].\n\nL'abonnement actif jusqu'au [date de fin si connue] prendra fin automatiquement sans renouvellement de votre part. Aucune action supplémentaire n'est nécessaire.\n\nSi vous souhaitez reprendre l'abonnement ultérieurement, n'hésitez pas à nous recontacter.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Le renouvellement n'est jamais automatique — rassurer le client là-dessus. Pas d'action requise de la part d'Auticiel pour une non-résiliation."
+  },
+  {
+    "id": "sav-tablette-defectueuse",
+    "title": "SAV — Tablette défectueuse / sous garantie",
+    "category": "SAV / Assistance technique",
+    "keywords": ["cassée", "défectueuse", "garantie", "sav", "réparation", "panne", "écran", "ne s'allume plus", "ne fonctionne plus"],
+    "client_type": "Les deux",
+    "frequency": "Fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous sommes désolés d'apprendre que vous rencontrez un problème avec votre tablette AMIKEO.\n\nPour initier la procédure de garantie (24 mois pièces et main d'œuvre pour les défauts constructeurs), nous avons besoin de :\n- Une description précise du problème constaté\n- Une photo ou vidéo si possible\n- La date d'achat (ou numéro de commande)\n\nMerci de nous envoyer ces éléments. Notre équipe vous guidera pour la suite de la procédure.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Garantie : 24 mois pièces et main d'œuvre, 12 mois batterie. Exclusions : casse, vol, perte, mauvaise manipulation. Si c'est une casse : pas de garantie, proposer un devis de réparation. Adresse retour : AUTICIEL, Bâtiment WeWork, 198 Av de France, 75012 Paris. Délai Samsung : minimum 1 mois."
+  },
+  {
+    "id": "probleme-connexion-cloud",
+    "title": "Problème de connexion au cloud Auticiel",
+    "category": "SAV / Assistance technique",
+    "keywords": ["cloud", "connexion", "compte", "mot de passe", "identifiant", "espace", "synchronisation"],
+    "client_type": "Les deux",
+    "frequency": "Fréquent",
+    "action_required": false,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Pour accéder à votre espace cloud Auticiel, rendez-vous sur https://cloud.auticiel.com/ depuis un ordinateur (le cloud n'est pas accessible depuis un smartphone ou une tablette).\n\nSi vous ne vous souvenez plus de votre mot de passe, cliquez sur \"Mot de passe oublié\" et entrez l'adresse email associée à votre compte.\n\nSi vous ne connaissez pas l'adresse email associée, n'hésitez pas à nous la préciser et nous vérifierons de notre côté.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "Le cloud est accessible uniquement sur ordinateur. URL : https://cloud.auticiel.com/. Souvent les clients essaient depuis leur téléphone — les rassurer. Si le client ne connaît pas son email, chercher dans Odoo."
+  },
+  {
+    "id": "probleme-technique-app",
+    "title": "Problème technique — application qui bug",
+    "category": "SAV / Assistance technique",
+    "keywords": ["bug", "bloquée", "freeze", "plante", "ne répond plus", "voice", "agenda", "séquences", "gestionnaire", "mise à jour"],
+    "client_type": "Les deux",
+    "frequency": "Fréquent",
+    "action_required": true,
+    "template": "Bonjour [Prénom],\n\nMerci pour votre message. Nous sommes désolés pour ce désagrément.\n\nPourriez-vous essayer dans l'ordre les étapes suivantes :\n1. Vérifier que la tablette est bien connectée à Internet\n2. Mettre à jour Android (Paramètres → Mise à jour du logiciel)\n3. Mettre à jour AMIKEO via l'application Gestionnaire\n4. Forcer la synchronisation dans chaque application\n5. Éteindre et rallumer la tablette\n\nSi le problème persiste après ces étapes, n'hésitez pas à nous recontacter. Nous pourrons organiser une prise en main à distance via TeamViewer pour diagnostiquer le problème.\n\nNous vous souhaitons une bonne journée,\nL'équipe Auticiel.",
+    "notes": "C'est la procédure de premier niveau standard. Si les 5 étapes ne résolvent pas le problème : organiser une session TeamViewer + RDV Google Calendar. Si trop technique : escalader à François. Ne pas promettre de résoudre par email."
+  }
+]
