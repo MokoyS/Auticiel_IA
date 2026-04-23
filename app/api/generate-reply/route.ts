@@ -111,6 +111,52 @@ PROCESS INTERNES (référence si besoin)
     prompt += '\n'
   }
 
+  const edAny = ed as any
+  if (edAny?.ecosystem) {
+    prompt += `═══════════════════════════════════════
+ÉCOSYSTÈME AMIKEO
+═══════════════════════════════════════
+Gestionnaire : ${edAny.ecosystem.gestionnaire}
+Création de contenu : ${edAny.ecosystem.content_creation}
+Flux : ${edAny.ecosystem.data_flow}
+`
+  }
+
+  if (edAny?.cloud) {
+    prompt += `
+CLOUD AUTICIEL
+URL : ${edAny.cloud.url}
+Contrainte : ${edAny.cloud.constraint}
+`
+  }
+
+  if (edAny?.payment) {
+    prompt += `
+PAIEMENT
+${edAny.payment.accepted} ${edAny.payment.refused} ${edAny.payment.rule} ${edAny.payment.invoice}
+`
+  }
+
+  if (edAny?.warranties) {
+    prompt += `
+GARANTIES
+Tablette : ${edAny.warranties.tablet} | Batterie : ${edAny.warranties.battery}
+Exclusions : ${edAny.warranties.exclusions}
+Perte/vol : ${edAny.warranties.lost_stolen}
+`
+  }
+
+  if (edAny?.objections?.length > 0) {
+    prompt += `
+═══════════════════════════════════════
+RÉPONSES AUX OBJECTIONS FRÉQUENTES
+═══════════════════════════════════════
+`
+    edAny.objections.forEach((o: any) => {
+      prompt += `Q : ${o.question}\nR : ${o.answer}\n\n`
+    })
+  }
+
   if (ed?.faq_tech) {
     prompt += `═══════════════════════════════════════
 FAQ TECHNIQUE RAPIDE

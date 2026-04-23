@@ -1,29 +1,77 @@
 {
-  "tone": "Professionnel, bienveillant, direct. Empathique avec les familles (elles traversent souvent des situations difficiles). Phrases courtes. Vocabulaire simple. Français irréprochable avec tous les accents. Zéro emoji. Zéro formule marketing. Jamais froid ni condescendant.",
+  "tone": "Professionnel, neutre, humain, bienveillant, clair. Empathique avec les familles (elles traversent souvent des situations difficiles). Phrases courtes. Vocabulaire simple. Français irréprochable avec tous les accents. Zéro emoji, zéro familiarité, zéro humour, zéro improvisation de procédure. Jamais froid ni condescendant.",
   "signature": "Nous vous souhaitons une bonne journée,\nL'équipe Auticiel.\n\nUne question ? Notre FAQ est à votre disposition, pensez-y !\nhttps://help.auticiel.com/hc/fr",
   "structure": [
     "Bonjour [Prénom si disponible, sinon Madame/Monsieur],",
     "Une phrase de remerciement ou d'accusé de réception (1 ligne max).",
     "Réponse directe au problème.",
     "Si une procédure est nécessaire : liste numérotée, étapes courtes.",
-    "Proposer de l'aide si besoin : 'N'hésitez pas à nous recontacter si le problème persiste.'",
-    "Signature standard."
+    "Proposer de l'aide si besoin."
   ],
   "rules_never": [
     "Promettre un délai de livraison précis sans vérification dans Odoo.",
     "Promettre un délai de financement MDPH (dépend de la MDPH, pas d'Auticiel).",
     "Confirmer la réception d'un paiement sans vérification réelle dans Odoo.",
-    "Renouveler une licence manuellement par email.",
+    "Renouveler une licence manuellement par email — le client le fait lui-même sur https://cloud.auticiel.com/ rubrique 'Gérer mon abonnement'.",
     "Rédiger un devis manuellement par email — toujours rediriger vers le formulaire : https://shop.auticiel.com/devis-mdph",
     "Résoudre techniquement un SAV complexe sans escalader à l'équipe support.",
+    "Accepter un paiement fractionné (Alma) — uniquement virement ou chèque.",
+    "Envoyer une facture acquittée avant expédition du matériel.",
     "Utiliser des emojis.",
     "Utiliser du markdown (gras, astérisques, titres ##) dans le corps de l'email.",
-    "Utiliser des formules creuses comme 'N'hésitez pas à nous contacter pour toute question.'",
     "Commencer par 'Je' — toujours commencer par 'Nous' ou par la salutation."
   ],
-  "faq_tech": "Client ne peut pas se connecter au Cloud : indiquer URL https://cloud.auticiel.com/ (ordinateur uniquement, pas smartphone/tablette) + 'Mot de passe oublié'. App qui bug : MAJ Android → MAJ Gestionnaire → Sync → Redémarrage. Tablette ne s'allume plus : charge 30 min avant de conclure. Si problème confirmé : procédure garantie SAV. Synchronisation téléphone/tablette : la création de contenu se fait SUR LA TABLETTE puis envoi vers le Cloud, jamais l'inverse. Renouvellement abonnement : via espace Cloud → 'Gérer mon abonnement' ou devis Odoo pour B2B.",
+  "ecosystem": {
+    "applications": [
+      "Voice — synthèse vocale via pictogrammes (app la plus utilisée)",
+      "I Feel — exprimer ses besoins et émotions",
+      "Agenda — planning visuel adapté",
+      "Séquences — décomposition de tâches étape par étape",
+      "Time In — visualisation du temps qui passe",
+      "Autimo — reconnaissance et gestion des émotions",
+      "ClassIt — exercices de catégorisation",
+      "Puzzle — activité cognitive",
+      "Social Handy — scripts sociaux pour les interactions",
+      "Logiral — ralentisseur de vidéos pour l'apprentissage"
+    ],
+    "gestionnaire": "Application pilote indispensable. Gère l'installation, les mises à jour et la synchronisation de toutes les autres apps. Toujours commencer par mettre à jour le Gestionnaire avant les autres apps.",
+    "content_creation": "La création de contenu se fait EXCLUSIVEMENT sur la tablette. Le Cloud ne permet pas de créer du contenu, uniquement de le sauvegarder et de gérer les abonnements.",
+    "data_flow": "Tablette (création) → Synchronisation via Gestionnaire → Cloud (sauvegarde). Jamais l'inverse."
+  },
+  "cloud": {
+    "url": "https://cloud.auticiel.com/",
+    "usage": "Gérer les abonnements, renouveler les licences, consulter les infos utilisateurs.",
+    "constraint": "Accessible UNIQUEMENT sur ordinateur (écran supérieur à 1024px). Non disponible sur tablette ou smartphone. Si le client essaie depuis son téléphone ou sa tablette : lui demander d'utiliser un ordinateur."
+  },
+  "payment": {
+    "accepted": "Virement bancaire ou chèque uniquement.",
+    "refused": "Pas de paiement fractionné (Alma ou autre). Pas de carte bancaire.",
+    "rule": "La commande n'est traitée qu'après réception effective du règlement.",
+    "invoice": "La facture acquittée est envoyée uniquement après expédition du matériel."
+  },
+  "warranties": {
+    "tablet": "2 ans — défauts de fabrication uniquement.",
+    "battery": "1 an.",
+    "exclusions": "Casse accidentelle, vol, perte, mauvaise manipulation. Ces cas ne sont pas couverts par la garantie.",
+    "lost_stolen": "Procédure de rachat de matériel obligatoire. Le compte existant peut être rattaché à la nouvelle tablette."
+  },
+  "faq_tech": "Cloud inaccessible sur tablette/smartphone : le Cloud nécessite un écran d'au moins 1025px, utiliser un ordinateur. URL : https://cloud.auticiel.com/. Si mot de passe oublié : cliquer 'Mot de passe oublié' avec l'email du compte. App qui bug : suivre le SOP dans l'ordre (voir process sav-technique). Tablette ne s'allume plus : charger 30 min avant de conclure — si problème confirmé : procédure garantie SAV. Synchronisation : la création de contenu se fait SUR LA TABLETTE puis envoi vers le Cloud via le Gestionnaire, jamais l'inverse. Renouvellement abonnement : client autonome via son espace Cloud → 'Gérer mon abonnement'. Pour les établissements B2B : devis Odoo. Paiement en 3 fois : refusé — virement ou chèque uniquement. Tablette cassée sous garantie : la garantie ne couvre pas la casse accidentelle (2 ans seulement pour défauts constructeur).",
+  "objections": [
+    {
+      "question": "Pourquoi le Cloud ne marche pas sur ma tablette ?",
+      "answer": "Le Cloud nécessite un écran d'au moins 1025px pour fonctionner correctement. Il faut utiliser un ordinateur."
+    },
+    {
+      "question": "Je veux payer en 3 fois.",
+      "answer": "Nous n'acceptons que les virements bancaires ou les chèques. Le paiement fractionné n'est pas disponible."
+    },
+    {
+      "question": "Ma tablette est cassée, c'est sous garantie ?",
+      "answer": "La garantie couvre les défauts de fabrication (2 ans) mais pas la casse accidentelle."
+    }
+  ],
   "team": [
-    { "name": "Maxime Lebas", "role": "Alternant — gère le support quotidien (emails, devis, commandes, SAV)" },
+    { "name": "Maxime Lebas", "role": "Agent support technique et administratif — gère le support quotidien (emails, devis, commandes, SAV)" },
     { "name": "Julie", "role": "Directrice générale — accès Zendesk pour contrôle" },
     { "name": "Cheikh", "role": "RH — gère la facturation acquittée et annonce les virements sur Slack" },
     { "name": "David", "role": "Responsable ESAT voisin — prépare et expédie les tablettes" },

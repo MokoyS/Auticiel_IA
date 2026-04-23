@@ -58,19 +58,32 @@
   },
   {
     "id": "sav-technique",
-    "title": "SAV — Problèmes techniques (cloud, app, mode aidant)",
-    "trigger": "Client signale un bug applicatif ou un problème de connexion",
+    "title": "SAV — Problèmes techniques (SOP premier niveau)",
+    "trigger": "Client signale un bug applicatif, problème de connexion, app bloquée",
     "steps": [
-      "Vérifier connexion Internet active",
-      "Effectuer les mises à jour Android",
-      "Effectuer les mises à jour AMIKEO via le Gestionnaire",
-      "Forcer la synchronisation application par application",
-      "Éteindre et rallumer la tablette",
-      "Réessayer sous Wi-Fi stable",
-      "Si insuffisant : organiser une prise en main à distance via TeamViewer (RDV Google Calendar obligatoire)",
-      "Si trop technique : escalader à François (dev)"
+      "Étape 1 : Vérifier que la tablette est bien connectée à Internet",
+      "Étape 2 : Effectuer les mises à jour Android (Paramètres → Mise à jour du logiciel)",
+      "Étape 3 : Effectuer les mises à jour AMIKEO via le Gestionnaire",
+      "Étape 4 : Lancer la synchronisation manuelle, application par application",
+      "Étape 5 : Redémarrer la tablette (éteindre complètement, rallumer)",
+      "Étape 6 : Tester de nouveau avec une connexion Wi-Fi stable",
+      "Si insuffisant après les 6 étapes : organiser une session TeamViewer (RDV Google Calendar obligatoire)",
+      "Si trop technique : escalader à François"
     ],
-    "notes": "Si problème dû à mauvaise manipulation : intervention facturée. Ne jamais promettre de résoudre par email uniquement. TeamViewer QuickSupport est l'outil de prise en main à distance."
+    "notes": "Toujours faire appliquer les étapes dans l'ordre — ne pas sauter d'étape. Si le problème est dû à une mauvaise manipulation utilisateur : l'intervention TeamViewer est une prestation payante. Ne jamais promettre de résoudre par email uniquement."
+  },
+  {
+    "id": "intervention-distance",
+    "title": "Intervention à distance — TeamViewer",
+    "trigger": "Problème non résolu après SOP premier niveau, ou problème complexe nécessitant accès direct à la tablette",
+    "steps": [
+      "Envoyer au client le lien de prise de RDV Google Calendar officiel",
+      "Confirmer que le client a bien installé TeamViewer QuickSupport sur sa tablette",
+      "Au moment du RDV : demander au client d'ouvrir TeamViewer QuickSupport et de partager le code d'accès",
+      "Effectuer la prise en main à distance et résoudre le problème",
+      "Si la cause est une mauvaise manipulation : informer le client que l'intervention est payante"
+    ],
+    "notes": "Outil : TeamViewer QuickSupport. RDV obligatoire via Google Calendar — ne jamais faire un TeamViewer improvisé sans RDV. Facturation : toute réinstallation due à une erreur de manipulation utilisateur est une prestation payante."
   },
   {
     "id": "mdph-financement",
